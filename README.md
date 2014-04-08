@@ -47,8 +47,8 @@ In your `php.ini` file, setting `php.environment` will set the environment for a
 
 You can either use Apache or Nginx to set a server variable, or you can modify your `$_SERVER` header to set the environment
 
-For Apache, use [`SetEnv`][0]
-And Nginx is a little different. Check [this][1] StackOverflow post for an example.
+* For Apache, use [`SetEnv`][0]
+* And Nginx is a little different. Check [this][1] StackOverflow post for an example.
 
 #### 3. CLI Arguments
 
