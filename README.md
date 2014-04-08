@@ -47,6 +47,9 @@ In your `php.ini` file, setting `php.environment` will set the environment for a
 
 You can either use Apache or Nginx to set a server variable, or you can modify your `$_SERVER` header to set the environment
 
+For Apache, use [`SetEnv`][0]
+And Nginx is a little different. Check [this][1] StackOverflow post for an example.
+
 #### 3. CLI Arguments
 
 If you are using the `SymfonyEnvironment` class, you can tie into the arguments (`--env` and `--no-debug`) by creating your environment
@@ -76,3 +79,7 @@ $kernel = new AppKernel( $env->getType(), $env->getDebug() );
 $application = new Application($kernel);
 $application->run( $input );
 ```
+
+
+[0]: http://httpd.apache.org/docs/2.2/mod/mod_env.html#SetEnv
+[1]: http://stackoverflow.com/a/19491780/248903
