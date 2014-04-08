@@ -62,14 +62,14 @@ set_time_limit(0);
 
 require_once __DIR__.'/bootstrap.php.cache';
 require_once __DIR__.'/AppKernel.php';
-require_once __DIR__ .'/../app/Environment.php';
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Debug\Debug;
+use Aequasi\Environment\SymfonyEnvironment;
 
 $input = new ArgvInput( );
-$env = new Aequasi\Environment\SymfonyEnvironment( $input );
+$env = new SymfonyEnvironment( $input );
 
 if( $env->getDebug() ) {
   Debug::enable();
