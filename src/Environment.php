@@ -114,7 +114,7 @@ class Environment
      */
     protected function findDebug()
     {
-        return in_array($this->environment, static::$DEBUG_TYPES);
+        return in_array($this->type, static::$DEBUG_TYPES);
     }
 
     /**
