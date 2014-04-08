@@ -30,10 +30,10 @@ var_dump($environment->getDebug());
 // Above will dump true
 ```
 
-You can set what the default environment is with `Environment::$DEFAULT_ENVIRONMENT` (string),
-and you can set what environments are in debug mode with `Environment::$DEBUG_TYPES` (string[]).
+You can set what the default environment is with `Environment::$DEFAULT_ENVIRONMENT` (`string`),
+and you can set what environments are in debug mode with `Environment::$DEBUG_TYPES` (`string[]`).
 
-The allowed environments can also be changed by overriding the `Environment::$DEFAULT_TYPE` (string[]) parameter.
+The allowed environments can also be changed by overriding the `Environment::$DEFAULT_TYPE` (`string[]`) parameter.
 
 ### Setting Environments
 
