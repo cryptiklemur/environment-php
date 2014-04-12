@@ -46,7 +46,7 @@ class SymfonyEnvironment extends Environment
      */
     public function __construct(InputInterface $input = null)
     {
-        $this->input = $input === null ? $input : new ArgvInput();
+        $this->input = $input !== null ? $input : new ArgvInput();
 
         parent::__construct();
     }
