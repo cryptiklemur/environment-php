@@ -26,7 +26,7 @@ use Aequasi\Environment\Environment;
 /**
  * @author Luis Cordova <cordoval@gmail.com>
  */
-class EnvironmentTest extends \PHPUnit_Framework_TestCase
+class SymfonyEnvironmentTest extends \PHPUnit_Framework_TestCase
 {
     /** @var \Aequasi\Environment\Environment */
     protected $environment;
