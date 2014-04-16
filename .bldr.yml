@@ -101,4 +101,3 @@ bldr:
                     src:
                         - { path: [src, test], files: *.php, recursive: true }
                     task: testLocal
-  
