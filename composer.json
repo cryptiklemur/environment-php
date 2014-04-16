@@ -1,28 +1,33 @@
 {
-    "name":              "aequasi/environment",
-    "description":       "Environment Class for PHP",
-    "license":           "Apache V2",
-    "authors":           [
+    "name": "aequasi/environment",
+    "description": "Environment Class for PHP",
+    "license": "Apache V2",
+    "authors": [
         {
-            "name":  "Aaron Scherer",
+            "name": "Aaron Scherer",
             "email": "aequasi@gmail.com"
+        },
+        {
+            "name": "Luis Cordova",
+            "email": "cordoval@gmail.com"
         }
     ],
-    "autoload":          {
+    "autoload": {
         "psr-4": {
             "Aequasi\\Environment\\": "src/"
         }
     },
-    "autoload-dev":      {
+    "autoload-dev": {
         "psr-4": {
             "Aequasi\\Environment\\Test\\": "test/"
         }
     },
-    "suggest":           {
+    "suggest": {
         "symfony/console": "For use with the Symfony2 Framework and the CLI"
     },
     "require-dev": {
-       "symfony/console": "~2.0"
-    },
-    "minimum-stability": "stable"
+        "symfony/console": "~2.0",
+        "phpunit/phpunit": "~3.7",
+        "raulfraile/ladybug": "dev-master@dev"
+    }
 }
