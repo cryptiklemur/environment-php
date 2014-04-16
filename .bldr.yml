@@ -90,7 +90,7 @@ bldr:
                     type: exec
                     executable: php
                     arguments:
-                        - bin/phpunit
+                        - vendor/bin/phpunit
                         #- --stop-on-failure
                         #- --group=now
         watch:
