@@ -22,6 +22,8 @@
 namespace Aequasi\Environment\Test;
 
 use Aequasi\Environment\Environment;
+use Aequasi\Environment\SymfonyEnvironment;
+use Symfony\Component\Console\Input\ArgvInput;
 
 /**
  * @author Luis Cordova <cordoval@gmail.com>
@@ -31,58 +33,43 @@ class SymfonyEnvironmentTest extends \PHPUnit_Framework_TestCase
     /** @var \Aequasi\Environment\Environment */
     protected $environment;
 
-    public function setUp()
-    {
-        $this->environment = new Environment();
-    }
-
     /**
      * @test
      */
-    public function the_default_type_is_dev()
+    public function it_falls_back_when_no_custom_input_passed()
     {
+        $this->environment = new SymfonyEnvironment();
+
         $this->assertEquals(
             Environment::$DEFAULT_TYPE,
             $this->environment->getType()
         );
-    }
-
-    /**
-     * @test
-     * @runInSeparateProcess
-     */
-    public function the_test_type_is_a_debug_type()
-    {
-        $_SERVER['PHP_ENVIRONMENT'] = 'test';
-        $this->environment = new Environment();
-
-        $this->assertEquals('test', $this->environment->getType());
         $this->assertTrue($this->environment->isDebug());
     }
 
     /**
      * @test
-     * @runInSeparateProcess
      */
-    public function the_type_can_be_defined_via_php_configuration()
+    public function it_gets_type_from_input_args()
     {
-        if (!('test' === get_cfg_var('php.environment'))) {
-            $this->markTestSkipped('only works');
-        }
+        $input = new ArgvInput(['command:name', '--env=test']);
+        $this->environment = new SymfonyEnvironment($input);
 
-        $this->environment = new Environment();
-        $this->assertEquals('test', $this->environment->getType());
+        $this->assertEquals(
+            'test',
+            $this->environment->getType()
+        );
+        $this->assertTrue($this->environment->isDebug());
     }
 
     /**
      * @test
-     * @runInSeparateProcess
-     *
-     * @expectedException \Exception
      */
-    public function it_throws_an_exception_when_the_type_is_invalid()
+    public function it_detects_is_debug_from_input_args()
     {
-        $_SERVER['PHP_ENVIRONMENT'] = 'invalid';
-        $this->environment = new Environment();
+        $input = new ArgvInput(['command:name', '--no-debug']);
+        $this->environment = new SymfonyEnvironment($input);
+
+        $this->assertFalse($this->environment->isDebug());
     }
 }
