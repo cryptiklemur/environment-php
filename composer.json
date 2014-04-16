@@ -29,5 +29,8 @@
         "symfony/console": "~2.0",
         "phpunit/phpunit": "~3.7",
         "raulfraile/ladybug": "dev-master@dev"
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }
