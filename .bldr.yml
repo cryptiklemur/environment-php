@@ -2,8 +2,8 @@ bldr:
     name: aequasi/environment
     description: php environment class
     profiles:
-        travis:
-            description: Travis Profile
+        codeship:
+            description: Codeship Profile
             tasks:
                 - prepare
                 - lint
