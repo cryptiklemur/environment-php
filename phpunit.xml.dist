@@ -13,13 +13,6 @@
     syntaxCheck                 = "false"
     bootstrap                   = "vendor/autoload.php" >
 
-    <!--<php>-->
-        <!--<ini name="php.environment" value="test"/>-->
-        <!--<var name="php.environment" value="test"/>-->
-        <!--<const name="php.environment" value="test"/>-->
-        <!--<env name="php.environment" value="test"/>-->
-    <!--</php>-->
-
     <testsuites>
         <testsuite name="Environment PHP Test Suite">
             <directory>test</directory>

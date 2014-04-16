@@ -82,7 +82,6 @@ class Environment
         }
 
         $cfgEnv = get_cfg_var('php.environment');
-
         if ($cfgEnv !== false) {
             return $cfgEnv;
         }
