@@ -1,4 +1,4 @@
-Environment
+Environment - [![Build Status](https://www.codeship.io/projects/eb8d40e0-a738-0131-c660-26855b373a72/status)](https://www.codeship.io/projects/18972)
 ===========
 
 This class is pretty simple. It adds environments to your PHP project.
