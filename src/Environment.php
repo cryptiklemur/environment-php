@@ -70,7 +70,7 @@ class Environment
     /**
      * Sets the $type and $debug values.
      */
-    public function __construct($phpEnvironment = 'PHP_ENVIRONMENT', $iniEnvironment = 'php.environment')
+    public function __construct($phpEnvironment = 'PHP_ENVIRONMENT', $iniEnvironment = 'ini.environment')
     {
         $this->phpEnvironment = $phpEnvironment;
         $this->iniEnvironment = $iniEnvironment;
@@ -94,7 +94,7 @@ class Environment
             return $_SERVER[$this->phpEnvironment];
         }
 
-        $cfgEnv = get_cfg_var('php.environment');
+        $cfgEnv = get_cfg_var($this->iniEnvironment);
         if ($cfgEnv !== false) {
             return $cfgEnv;
         }
