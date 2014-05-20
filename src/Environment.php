@@ -58,10 +58,23 @@ class Environment
     protected $debug = false;
 
     /**
+     * @var string
+     */
+    protected $environmentName;
+
+    /**
+     * @var string
+     */
+    protected $iniName;
+
+    /**
      * Sets the $type and $debug values.
      */
-    public function __construct()
+    public function __construct($environmentName = 'PHP_ENVIRONMENT', $iniName = 'php.environment')
     {
+        $this->environmentName = $environmentName;
+        $this->iniName = $iniName;
+
         $this->type = $this->findType();
         $this->checkTypeAllowed();
 
@@ -69,7 +82,7 @@ class Environment
     }
 
     /**
-     * Checks $_SERVER['PHP_ENVIRONMENT'], then
+     * Checks $_SERVER[$this->environmentName], then
      * checks for the php.ini's php.environment.
      * Finally returns static::$DEFAULT_TYPE
      *
@@ -77,11 +90,11 @@ class Environment
      */
     protected function findType()
     {
-        if (isset($_SERVER['PHP_ENVIRONMENT'])) {
-            return $_SERVER['PHP_ENVIRONMENT'];
+        if (isset($_SERVER[$this->environmentName])) {
+            return $_SERVER[$this->environmentName];
         }
 
-        $cfgEnv = get_cfg_var('php.environment');
+        $cfgEnv = get_cfg_var($this->iniName);
         if ($cfgEnv !== false) {
             return $cfgEnv;
         }
