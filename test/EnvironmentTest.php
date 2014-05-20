@@ -41,10 +41,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
      */
     public function the_default_type_is_dev()
     {
-        $this->assertEquals(
-            Environment::$DEFAULT_TYPE,
-            $this->environment->getType()
-        );
+        $this->assertEquals(Environment::$DEFAULT_TYPE, $this->environment->getType());
     }
 
     /**
@@ -84,5 +81,16 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     {
         $_SERVER['PHP_ENVIRONMENT'] = 'invalid';
         $this->environment = new Environment();
+    }
+
+    /**
+     * @test
+     */
+    public function it_allows_variable_names_for_ini_and_environment_to_be_defined()
+    {
+        $this->environment = new Environment('APP_ENV', 'php.app_env');
+
+        $this->assertEquals(Environment::$DEFAULT_TYPE, $this->environment->getType());
+        $this->assertTrue($this->environment->isDebug());
     }
 }
