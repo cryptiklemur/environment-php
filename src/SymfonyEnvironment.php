@@ -38,6 +38,11 @@ class SymfonyEnvironment extends Environment
     protected $input;
 
     /**
+     * @var string
+     */
+    protected $switch;
+
+    /**
      * Builds the $input parameter as well
      *
      * {@inheritDoc}
@@ -49,8 +54,11 @@ class SymfonyEnvironment extends Environment
     public function __construct(
         InputInterface $input = null,
         $environmentName = 'PHP_ENVIRONMENT',
-        $iniName = 'php.environment'
+        $iniName = 'php.environment',
+        $switch = 'cli'
     ) {
+        $this->switch = $switch;
+
         $this->input = $input !== null ? $input : new ArgvInput();
 
         parent::__construct($environmentName, $iniName);
@@ -63,7 +71,11 @@ class SymfonyEnvironment extends Environment
      */
     protected function findType()
     {
-        $env = $this->input->getParameterOption(['--env', '-e']);
+        $env = null;
+        if ($this->isCli()) {
+            $env = $this->input->getParameterOption(['--env', '-e']);
+        }
+
         return !empty($env) ? $env : parent::findType();
     }
 
@@ -74,7 +86,19 @@ class SymfonyEnvironment extends Environment
      */
     protected function findDebug()
     {
-        return $this->input->hasParameterOption(['--no-debug']) ? false : parent::findDebug();
+        if ($this->isCli()) {
+            return $this->input->hasParameterOption(['--no-debug']) ? false : parent::findDebug();
+        }
+
+        return parent::findDebug();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isCli()
+    {
+        return 'cli' === $this->switch;
     }
 }
  
