@@ -38,7 +38,7 @@ class Environment
      *
      * @var string $DEFAULT_TYPE
      */
-    public static $DEFAULT_TYPE = 'dev';
+    public static $DEFAULT_TYPE = 'prod';
 
     /**
      * Environment Types that should be in debug
