@@ -26,7 +26,7 @@ $environment = new Aequasi\Environment\Environment;
 // By default, the environment is set to 'dev'
 echo $environment->getType();
 // Above will echo 'dev';
-var_dump($environment->getDebug());
+var_dump($environment->isDebug());
 // Above will dump true
 ```
 
@@ -71,11 +71,11 @@ use Aequasi\Environment\SymfonyEnvironment;
 $input = new ArgvInput( );
 $env = new SymfonyEnvironment( $input );
 
-if( $env->getDebug() ) {
+if( $env->isDebug() ) {
   Debug::enable();
 }
 
-$kernel = new AppKernel( $env->getType(), $env->getDebug() );
+$kernel = new AppKernel( $env->getType(), $env->isDebug() );
 $application = new Application($kernel);
 $application->run( $input );
 ```
