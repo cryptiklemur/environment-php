@@ -43,17 +43,17 @@ class SymfonyEnvironment extends Environment
      * {@inheritDoc}
      *
      * @param InputInterface $input
-     * @param string         $environmentName
+     * @param string|array   $envNames
      * @param string         $iniName
      */
     public function __construct(
         InputInterface $input = null,
-        $environmentName = 'PHP_ENVIRONMENT',
+        $envNames = null,
         $iniName = 'php.environment'
     ) {
         $this->input = $input !== null ? $input : new ArgvInput();
 
-        parent::__construct($environmentName, $iniName);
+        parent::__construct($envNames, $iniName);
     }
 
     /**

@@ -58,9 +58,9 @@ class Environment
     protected $debug = false;
 
     /**
-     * @var string
+     * @var string[]
      */
-    protected $environmentName;
+    protected $envNames = ['PHP_ENVIRONMENT', 'APP_ENV'];
 
     /**
      * @var string
@@ -69,10 +69,18 @@ class Environment
 
     /**
      * Sets the $type and $debug values.
+     *
+     * @throws \Exception
+     *
+     * @param string|array $envNames
+     * @param string       $iniName
      */
-    public function __construct($environmentName = 'PHP_ENVIRONMENT', $iniName = 'php.environment')
+    public function __construct($envNames = null, $iniName = 'php.environment')
     {
-        $this->environmentName = $environmentName;
+        if (!empty($envNames)) {
+            $this->setEnvnames($envNames);
+        }
+
         $this->iniName = $iniName;
 
         $this->type = $this->findType();
@@ -90,8 +98,10 @@ class Environment
      */
     protected function findType()
     {
-        if (isset($_SERVER[$this->environmentName])) {
-            return $_SERVER[$this->environmentName];
+        foreach ($this->envNames as $envName) {
+            if (isset($_SERVER[$envName])) {
+                return $_SERVER[$envName];
+            }
         }
 
         $cfgEnv = get_cfg_var($this->iniName);
@@ -128,6 +138,18 @@ class Environment
     protected function findDebug()
     {
         return in_array($this->type, static::$DEBUG_TYPES);
+    }
+
+    /**
+     * @param array|string $names
+     */
+    public function setEnvNames($names)
+    {
+        if (is_string($names)) {
+            $names = [$names];
+        }
+
+        array_merge($this->envNames, $names);
     }
 
     /**
