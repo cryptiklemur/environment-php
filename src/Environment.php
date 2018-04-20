@@ -78,7 +78,7 @@ class Environment
     public function __construct($envNames = null, $iniName = 'php.environment')
     {
         if (!empty($envNames)) {
-            $this->setEnvnames($envNames);
+            $this->setEnvNames($envNames);
         }
 
         $this->iniName = $iniName;
