@@ -1,7 +1,7 @@
 {
     "name": "aequasi/environment",
     "description": "Environment Class for PHP",
-    "license": "Apache V2",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Aaron Scherer",
