@@ -13,8 +13,7 @@ composer require aequasi/environment
 
 ## To Use
 
-To get set up super simply, all you have to do is drop the `Environment` class in your
-front controller. For example:
+To get set up, drop the `Environment` class in your front controller. For example:
 
 ```php
 <?php
